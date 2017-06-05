@@ -7,6 +7,7 @@ import Api from '../api/Api';
 import { Namespace as CategorySelectNamespace } from 'features/categorySelect';
 import { Namespace as LocationSelectNamespace } from 'features/locationSelect';
 import { Namespace as DynamicFieldsNamespace } from 'features/dynamicFields';
+import { Namespace as TestFeatureNamespace } from 'features/testFeature';
 import { Namespace as HomeModuleNamespace } from '../../modules/OrderForm/OrderForm';
 
 abstract class Module<S, C> {
@@ -64,6 +65,7 @@ interface IReduxState {
   locationSelect: LocationSelectNamespace.IReduxState;
   dynamicFields: DynamicFieldsNamespace.IReduxState;
   orderForm: HomeModuleNamespace.IReduxState;
+  testFeature: TestFeatureNamespace.IReduxState;
 }
 
 interface IModuleEntryData {

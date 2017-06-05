@@ -7,12 +7,15 @@ import {
   Middleware,
   Store,
   ReducersMapObject,
+  Action,
 } from 'redux';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import * as locationSelectFeature from './features/locationSelect';
 import * as dynamicFieldsFeature from './features/dynamicFields';
+import * as testFeature from './features/testFeature';
 import { Module, IReduxState, IDependencies, IReducerData } from './shared/types/app';
+import { reducer as multiConnenctReducer, multiReducer } from './shared/redux/multiConnect';
 import { SagaMiddleware } from 'redux-saga';
 
 interface IStoreData {
@@ -69,9 +72,19 @@ function createReducer(
     }, {} as ReducersMapObject,
   );
 
-  return combineReducers<IReduxState>({
+  const appReducer = combineReducers<IReduxState>({
     ...modulesReducers,
+    testFeature: multiReducer(testFeature.reducer),
   });
+
+  return composeReducers<IReduxState>([appReducer, multiConnenctReducer]);
+}
+
+function composeReducers<S>(reducers: Array<Reducer<any>>) {
+  return <A extends Action>(state: S, action: A) =>
+    reducers
+      .reverse()
+      .reduce((_state: S, reducer: Reducer<any>) => reducer(_state, action), state);
 }
 
 export { createReducer, IStoreData };
