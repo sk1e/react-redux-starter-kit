@@ -31,8 +31,6 @@ module.exports = {
             'react-select',
             'react-bootstrap',
             'react-tap-event-plugin',
-            'bootstrap/dist/css/bootstrap.min.css',
-            './assets/bootstrap.paper.min.css',
         ]
     },
     output: {
@@ -90,7 +88,7 @@ module.exports = {
                                     stylelint(),
                                     doiuse({
                                         browsers:['ie >= 11', 'last 2 versions'],
-                                        ignore: ['flexbox', 'rem'],
+                                        ignore: ['flexbox', 'rem', 'font-unicode-range'],
                                         ignoreFiles: ['**/normalize.css'],
                                     }),
                                     postcssReporter({

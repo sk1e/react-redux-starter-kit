@@ -4,10 +4,6 @@ import { ThunkAction, ActionCreator, Store } from 'redux';
 import { Reducer } from 'redux';
 import { SagaIterator } from 'redux-saga';
 import Api from '../api/Api';
-import { Namespace as CategorySelectNamespace } from 'features/categorySelect';
-import { Namespace as LocationSelectNamespace } from 'features/locationSelect';
-import { Namespace as DynamicFieldsNamespace } from 'features/dynamicFields';
-import { Namespace as HomeModuleNamespace } from '../../modules/OrderForm/OrderForm';
 
 abstract class Module<S, C> {
   public components?: C; // available componens to pass in other modules
@@ -59,12 +55,7 @@ interface IAction {
   type: string;
 }
 
-interface IReduxState {
-  categorySelect: CategorySelectNamespace.IReduxState;
-  locationSelect: LocationSelectNamespace.IReduxState;
-  dynamicFields: DynamicFieldsNamespace.IReduxState;
-  orderForm: HomeModuleNamespace.IReduxState;
-}
+interface IReduxState {}
 
 interface IModuleEntryData {
   component: React.ComponentClass<any> | React.StatelessComponent<any>;

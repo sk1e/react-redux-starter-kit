@@ -1,0 +1,37 @@
+@mixin FontFace($family, $name, $subname, $weight, $style) {
+  @font-face {
+    font-family: $family;
+    font-weight: $weight;
+    font-style: $style;
+    src: url('./fonts/#{$family}/#{$name}/#{$subname}-webfont.eot');
+    src:
+      url('./fonts/#{$family}/#{$name}/#{$subname}-webfont.eot?#iefix') format('embedded-opentype'),
+      url('./fonts/#{$family}/#{$name}/#{$subname}-webfont.woff2') format('woff2'),
+      url('./fonts/#{$family}/#{$name}/#{$subname}-webfont.woff') format('woff'),
+      url('./fonts/#{$family}/#{$name}/#{$subname}-webfont.ttf') format('truetype'),
+      url('./fonts/#{$family}/#{$name}/#{$subname}-webfont.svg##{$family}') format('svg');
+  }
+}
+
+@mixin FontFaceTTF($family, $name, $weight, $style) {
+  @font-face {
+    font-family: $family;
+    font-weight: $weight;
+    font-style: $style;
+    src: url('./fonts/#{$family}/#{$name}.ttf') format('truetype');
+  }
+}
+
+/* Roboto */
+@include FontFaceTTF(Roboto, Roboto-Thin, 100, normal);
+@include FontFaceTTF(Roboto, Roboto-ThinItalic, 100, italic);
+@include FontFaceTTF(Roboto, Roboto-Light, 300, normal);
+@include FontFaceTTF(Roboto, Roboto-LightItalic, 300, italic);
+@include FontFaceTTF(Roboto, Roboto-Regular, 400, normal);
+@include FontFaceTTF(Roboto, Roboto-Italic, 400, italic);
+@include FontFaceTTF(Roboto, Roboto-Medium, 500, normal);
+@include FontFaceTTF(Roboto, Roboto-MediumItalic, 500, italic);
+@include FontFaceTTF(Roboto, Roboto-Bold, 700, normal);
+@include FontFaceTTF(Roboto, Roboto-BoldItalic, 700, italic);
+@include FontFaceTTF(Roboto, Roboto-Black, 900, normal);
+@include FontFaceTTF(Roboto, Roboto-BlackItalic, 900, italic);

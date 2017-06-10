@@ -10,8 +10,9 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import * as locationSelectFeature from './features/locationSelect';
-import * as dynamicFieldsFeature from './features/dynamicFields';
+import { reducer as formReducer } from 'redux-form';
+// import * as locationSelectFeature from './features/locationSelect';
+// import * as dynamicFieldsFeature from './features/dynamicFields';
 import { Module, IReduxState, IDependencies, IReducerData } from './shared/types/app';
 import { SagaMiddleware } from 'redux-saga';
 
@@ -45,8 +46,8 @@ function configureStore(modules: Array<Module<any, any>>, deps: IDependencies): 
     }
   });
 
-  sagaMiddleware.run(locationSelectFeature.actions.saga(deps));
-  sagaMiddleware.run(dynamicFieldsFeature.actions.saga(deps));
+  // sagaMiddleware.run(locationSelectFeature.actions.saga(deps));
+  // sagaMiddleware.run(dynamicFieldsFeature.actions.saga(deps));
 
   return {
     store,
@@ -71,6 +72,7 @@ function createReducer(
 
   return combineReducers<IReduxState>({
     ...modulesReducers,
+    form: formReducer,
   });
 }
 

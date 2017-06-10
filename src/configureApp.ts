@@ -1,6 +1,5 @@
 import { SagaMiddleware } from 'redux-saga';
 import { Store, Reducer } from 'redux';
-import { HomeModule, OrderFormModule } from './modules';
 import configureStore, { createReducer } from './configureStore';
 import { Module, IReducerData, IDependencies, RootSaga, IReduxState } from './shared/types/app';
 import Api from './shared/api/Api';
@@ -17,8 +16,6 @@ interface IAppData {
 function configureApp(appData?: IAppData): IAppData {
   /* Prepare main app elements */
   const modules = {
-    home: new HomeModule(),
-    tenders: new OrderFormModule(),
     toArray(): Array<Module<any, any>> {
       return Object.keys(this).filter(key => key !== 'toArray').map(key => this[key]);
     },
