@@ -38,7 +38,7 @@ export interface IFormData {
   serviceZones: IServiceZone[];
 }
 
-interface IServiceZone {
+export interface IServiceZone {
   name: string;
   geoSet: IGeo[];
   phones: string[];
@@ -46,7 +46,7 @@ interface IServiceZone {
   socials: string[];
 }
 
-interface IGeo {
+export interface IGeo {
   country: string;
   city: string;
   street?: string;

@@ -1,7 +1,94 @@
 .test-form {
-  position: absolute;
-  top: 50%;
+  position: relative;
+  top: 0;
   left: 50%;
   display: block;
-  transform: translate(-50%, -50%);
+  width: 600px;
+  padding: 100px 0 200px;
+  transform: translateX(-50%);
+
+  &__text-field {
+    flex: 1;
+    margin-top: 10px;
+  }
+
+  &__text-input {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.72rem 1.43rem;
+    text-align: inherit;
+    color: #7b96a8;
+    border: solid 2px #bfcfda;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+
+    &:hover {
+      border: solid 2px #164c6b;
+    }
+  }
+
+  &__error {
+    margin: 5px 5px 0;
+    color: red;
+    font-size: 1.2rem;
+  }
+
+  &__btn {
+    height: 100%;
+    margin-left: 10px;
+    padding: 0.72rem 1.43rem;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+    color: #fbfdff;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #02a7df;
+    box-shadow: 0 4px 3px 0 rgba(1, 167, 223, 0.27);
+    font-size: 1.1rem;
+    font-weight: normal;
+    line-height: 1.5rem;
+
+    &:hover {
+      background-color: #00b4f2;
+    }
+
+    &:disabled {
+      background-color: #bfcfda;
+      box-shadow: none;
+    }
+  }
+
+  &__actions {
+    margin-top: 10px;
+    text-align: right;
+  }
+
+  &__text-field-array {
+    margin-top: 20px;
+  }
+
+  &__field-array-item {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__service-zone-item {
+    margin-top: 10px;
+    padding: 0 5px 5px;
+    border: solid 2px #bfcfda;
+    border-radius: 5px;
+    background-color: #e2e2e2;
+  }
+
+  &__geo-item {
+    margin-top: 10px;
+    padding: 0 5px 5px;
+    border: solid 2px #bfcfda;
+    border-radius: 5px;
+    background-color: #f1d4d4;
+  }
 }
