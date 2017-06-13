@@ -15,15 +15,9 @@ const multiConnect = <TReduxState, TStateProps, TDispatchProps, TOwnProps>(
   mapStateToProps: MapStateToProps<TReduxState, TStateProps, TOwnProps>,
   mapDispatchToProps?: MapDispatchToProps<TDispatchProps, TOwnProps>,
 ) => {
-  return (Component: ReactComponent<TStateProps & TDispatchProps & TOwnProps>): ReactComponent<TOwnProps> => {
+  return (WrappedComponent: ReactComponent<TStateProps & TDispatchProps & TOwnProps>): ReactComponent<TOwnProps> => {
 
     class MultiConnector extends React.PureComponent<TOwnProps, {}> {
-      public static keyPathToState: string[];
-      public static mapStateToProps: MapStateToProps<TReduxState, TStateProps, TOwnProps>;
-      public static mapDispatchToProps?: MapDispatchToProps<TDispatchProps, TOwnProps>;
-
-      public static WrappedComponent: ReactComponent<TStateProps & TDispatchProps & TOwnProps>;
-
       public static contextTypes = {
         store: React.PropTypes.object,
       };
@@ -38,8 +32,8 @@ const multiConnect = <TReduxState, TStateProps, TDispatchProps, TOwnProps>(
         this.context.store.dispatch(addInstance(this.instanceKey, initialState, keyPathToState));
         this.ConnectedComponent = connect(
           this.mapStateToProps,
-          MultiConnector.mapDispatchToProps ? this.mapDispatchToProps : null as any,
-        )(MultiConnector.WrappedComponent);
+          mapDispatchToProps ? this.mapDispatchToProps : null as any,
+        )(WrappedComponent);
       }
 
       public componentWillUnmount() {
@@ -53,16 +47,16 @@ const multiConnect = <TReduxState, TStateProps, TDispatchProps, TOwnProps>(
 
       @bind
       private mapStateToProps(appState: any, ownProps?: TOwnProps): TStateProps {
-        const state = MultiConnector.keyPathToState.reduce((prev, cur) => prev ? prev[cur] : prev, appState);
+        const state = keyPathToState.reduce((prev, cur) => prev ? prev[cur] : prev, appState);
         const instanceState = state ? state[this.instanceKey] : {};
-        return MultiConnector.mapStateToProps(instanceState, ownProps);
+        return mapStateToProps(instanceState, ownProps);
       }
 
       @bind
       private mapDispatchToProps(dispatch: Dispatch<any>, ownProps?: TOwnProps): TDispatchProps {
-        if (!MultiConnector.mapDispatchToProps) { return ({} as TDispatchProps); }
+        if (!mapDispatchToProps) { return ({} as TDispatchProps); }
 
-        const actions = MultiConnector.mapDispatchToProps(this.actionDecorator as any, ownProps);
+        const actions = mapDispatchToProps(this.actionDecorator as any, ownProps);
         return bindActionCreators(actions as any, dispatch);
       }
 
@@ -72,11 +66,6 @@ const multiConnect = <TReduxState, TStateProps, TDispatchProps, TOwnProps>(
         return action;
       }
     }
-
-    MultiConnector.keyPathToState = keyPathToState;
-    MultiConnector.mapStateToProps = mapStateToProps;
-    MultiConnector.mapDispatchToProps = mapDispatchToProps;
-    MultiConnector.WrappedComponent = Component;
 
     return MultiConnector;
   };
