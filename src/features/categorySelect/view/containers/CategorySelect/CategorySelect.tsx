@@ -10,7 +10,7 @@ import SelectInput from 'shared/view/elements/SelectInput/SelectInput';
 
 import { actions, selectors } from '../../../redux';
 
-import { IReduxState } from '../../../namespace';
+import { IAppReduxState } from 'shared/types/app';
 
 import './styles.scss';
 
@@ -30,10 +30,9 @@ interface IActionProps {
 
 type IProps = IOwnProps & IActionProps & IStateProps;
 
-function mapState(state: any): IStateProps {
-  const categoriesState: IReduxState = state.categorySelect;
-  const categories = selectors.selectCategories(categoriesState);
-  const chosen = selectors.selectChosenCategory(categoriesState);
+function mapState(state: IAppReduxState): IStateProps {
+  const categories = selectors.selectCategories(state);
+  const chosen = selectors.selectChosenCategory(state);
 
   return {
     options: categories.map<Select.Option>(category => ({

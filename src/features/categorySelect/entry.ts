@@ -1,8 +1,8 @@
 import { IFeatureEntry, BundleLoader } from 'shared/types/app';
-
 import * as namespace from './namespace';
 
 import { reducer, actions as acts, selectors as sels, getSaga } from './redux';
+
 import * as conts from './view/containers';
 
 const actions = { ...acts };

@@ -1,23 +1,22 @@
-import { createSelector } from 'reselect';
 import { IReduxState, ICategory, ICommunication } from '../../namespace';
+import { IAppReduxState } from 'shared/types/app';
 
-export function selectCategories(state: IReduxState): ICategory[] {
-  return state.data.options;
+function selectFeatureState(state: IAppReduxState): IReduxState {
+  if (!state.categorySelect) {
+    throw new Error('Cannot find categorySelect feature state!');
+  }
+
+  return state.categorySelect;
 }
 
-export function selectChosenCategory(state: IReduxState): number | null {
-  return state.data.selected;
+export function selectCategories(state: IAppReduxState): ICategory[] {
+  return selectFeatureState(state).data.options;
 }
 
-export const selectChosenCategoryObject =
-  createSelector<IReduxState, ICategory[], number | null, ICategory | undefined>(
-    selectCategories,
-    selectChosenCategory,
-    (categories: ICategory[], uid: number) => {
-      return categories.find((category: ICategory) => category.uid === uid);
-    },
-  );
+export function selectChosenCategory(state: IAppReduxState): number | null {
+  return selectFeatureState(state).data.selected;
+}
 
-export function selectCategoriesFetching(state: IReduxState): ICommunication {
-  return state.communications.categoriesFetching;
+export function selectCategoriesFetching(state: IAppReduxState): ICommunication {
+  return selectFeatureState(state).communications.categoriesFetching;
 }
