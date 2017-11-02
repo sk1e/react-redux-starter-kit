@@ -1,4 +1,4 @@
-import { initialCommunicationState, initialDataState } from '../data/initial';
+import { initialCommunicationState, initialDataState } from '../initial';
 import { Map, fromJS } from 'immutable';
 import { IAction } from 'shared/types/app';
 import { IReduxState, ICommunication, IData, Action } from '../../namespace';

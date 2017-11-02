@@ -1,4 +1,4 @@
-import { IReduxState, ICategory, ICommunication } from '../../namespace';
+import { IReduxState, ICategory, ICommunication } from '../namespace';
 import { IAppReduxState } from 'shared/types/app';
 
 function selectFeatureState(state: IAppReduxState): IReduxState {

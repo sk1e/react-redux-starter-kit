@@ -1,4 +1,4 @@
-import { IReduxState, ICommunication, IData } from '../../namespace';
+import { IReduxState, ICommunication, IData } from '../namespace';
 
 const initialCommunicationState: ICommunication = {
   isRequesting: false,
