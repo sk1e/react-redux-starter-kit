@@ -1,4 +1,4 @@
-import { ICategoriesResponse } from 'shared/api/Api';
+import { ICategoriesResponse } from 'services/api/Api';
 
 interface ICategory {
   uid: number;

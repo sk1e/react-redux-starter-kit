@@ -1,6 +1,6 @@
 import { IDependencies } from 'shared/types/app';
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { ICategoriesResponse } from 'shared/api/Api';
+import { ICategoriesResponse } from 'services/api/Api';
 import getErrorMsg from 'shared/helpers/getErrorMessage';
 
 function getSaga({ api }: IDependencies) {

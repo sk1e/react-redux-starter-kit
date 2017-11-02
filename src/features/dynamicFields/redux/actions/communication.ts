@@ -1,5 +1,5 @@
 import { IAction } from 'shared/types/app';
-import { IFieldsResponse } from 'shared/api/Api';
+import { IFieldsResponse } from 'services/api/Api';
 
 function loadFields(uid: number): IAction {
   return { type: 'DYNAMIC_FIELDS:LOAD_FIELDS', payload: uid };

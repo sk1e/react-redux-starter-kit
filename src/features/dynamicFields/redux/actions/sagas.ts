@@ -1,7 +1,7 @@
 import { IDependencies, IAction } from 'shared/types/app';
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { IFieldsResponse } from 'shared/api/Api';
+import { IFieldsResponse } from 'services/api/Api';
 import getErrorMsg from 'shared/helpers/getErrorMessage';
 import { loadFieldsSuccessed, loadFieldsFailed } from './communication';
 

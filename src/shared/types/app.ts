@@ -11,7 +11,7 @@ import { namespace as SearchRepositoriesNamespace } from 'features/searchReposit
 import { namespace as DynamicFieldsNamespace } from 'features/dynamicFields/entry';
 import { Namespace as HomeModuleNamespace } from '../../modules/OrderForm/OrderForm';
 
-import Api from '../api/Api';
+import Api from 'services/api';
 
 export abstract class Module<C = any> {
   public components?: C; // available componens to pass in other modules
