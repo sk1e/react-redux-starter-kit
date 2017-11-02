@@ -1,13 +1,17 @@
 import * as React from 'react';
-import * as block from 'bem-cn';
-import * as Select from 'react-select';
-import { ControlLabel, FormGroup } from 'react-bootstrap';
 import { connect, Dispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { actions, selectors } from '../../redux';
+import * as Select from 'react-select';
 import { bind } from 'decko';
+import * as block from 'bem-cn';
+
+import { ControlLabel, FormGroup } from 'react-bootstrap';
 import SelectInput from 'shared/view/elements/SelectInput/SelectInput';
-import { IReduxState } from '../../namespace';
+
+import { actions, selectors } from '../../../redux';
+
+import { IReduxState } from '../../../namespace';
+
 import './styles.scss';
 
 interface IOwnProps {
@@ -19,14 +23,14 @@ interface IStateProps {
   value: number | null;
 }
 
-interface IDispatchProps {
+interface IActionProps {
   loadCategories: typeof actions.loadCategories;
   chooseCategory: typeof actions.chooseCategory;
 }
 
-type IProps = IOwnProps & IDispatchProps & IStateProps;
+type IProps = IOwnProps & IActionProps & IStateProps;
 
-function mapStateToProps(state: any): IStateProps {
+function mapState(state: any): IStateProps {
   const categoriesState: IReduxState = state.categorySelect;
   const categories = selectors.selectCategories(categoriesState);
   const chosen = selectors.selectChosenCategory(categoriesState);
@@ -40,7 +44,7 @@ function mapStateToProps(state: any): IStateProps {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<any>): IDispatchProps {
+function mapDispatch(dispatch: Dispatch<any>): IActionProps {
   return bindActionCreators({
     loadCategories: actions.loadCategories,
     chooseCategory: actions.chooseCategory,
@@ -84,4 +88,4 @@ class CategorySelect extends React.PureComponent<IProps, {}> {
 }
 
 export { IProps, CategorySelect };
-export default connect<IStateProps, IDispatchProps, IOwnProps>(mapStateToProps, mapDispatchToProps)(CategorySelect);
+export default connect<IStateProps, IActionProps, IOwnProps>(mapState, mapDispatch)(CategorySelect);

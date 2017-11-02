@@ -1,37 +1,40 @@
 import { ICategoriesResponse } from 'services/api/Api';
 
-interface ICategory {
-  uid: number;
-  name: string;
-  id: number;
-}
-
-interface ICommunication {
-  isRequesting: boolean;
-  error: string;
-}
-
-interface IData {
-  options: ICategory[];
-  selected: number | null;
-}
-
-interface IReduxState {
+export interface IReduxState {
   communications: {
     categoriesFetching: ICommunication;
   };
   data: IData;
 }
 
-type Action =
-  { type: 'CATEGORY_SELECT:CATEGORY_SELECTED'; payload: number } |
-  { type: 'CATEGORY_SELECT:LOAD_CATEGORIES'; } |
-  { type: 'CATEGORY_SELECT:LOAD_CATEGORIES_COMPLETED'; payload: ICategoriesResponse; };
+export interface ICategory {
+  uid: number;
+  name: string;
+  id: number;
+}
 
-export {
-  IData,
-  IReduxState,
-  ICommunication,
-  ICategory,
-  Action,
-};
+export interface ICommunication {
+  isRequesting: boolean;
+  error: string;
+}
+
+export interface IData {
+  options: ICategory[];
+  selected: number | null;
+}
+
+export interface ICategorySelected {
+  type: 'CATEGORY_SELECT:CATEGORY_SELECTED';
+  payload: number;
+}
+
+export interface ILoadCategories {
+  type: 'CATEGORY_SELECT:LOAD_CATEGORIES';
+}
+
+export interface ILoadCategoriesCompleted {
+  type: 'CATEGORY_SELECT:LOAD_CATEGORIES_COMPLETED';
+  payload: ICategoriesResponse;
+}
+
+export type Action = ICategorySelected | ILoadCategories | ILoadCategoriesCompleted;
