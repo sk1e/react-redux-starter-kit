@@ -1,26 +1,28 @@
-import { IDependencies } from 'shared/types/app';
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { ICategoriesResponse } from 'services/api/Api';
 import getErrorMsg from 'shared/helpers/getErrorMessage';
 
-function getSaga({ api }: IDependencies) {
-  function* executeCategoriesLoading() {
-    try {
-      const response: ICategoriesResponse = yield call(api.loadCategories);
-      yield put({ type: 'CATEGORY_SELECT:LOAD_CATEGORIES_COMPLETED', payload: response });
-    } catch (error) {
-      const message = getErrorMsg(error);
-      yield put({ type: 'CATEGORY_SELECT:LOAD_CATEGORIES_FAILED', payload: message });
-    }
-  }
+import * as actions from '../actions';
 
-  function* saga() {
-    yield [
-      takeLatest('CATEGORY_SELECT:LOAD_CATEGORIES', executeCategoriesLoading),
-    ];
-  }
+import { IDependencies } from 'shared/types/app';
+import { ICategoriesResponse } from 'services/api/Api';
+import * as NS from '../../namespace';
 
-  return saga;
+const loadCategoriesType: NS.ILoadCategories['type'] = 'CATEGORY_SELECT:LOAD_CATEGORIES';
+
+export function getSaga(deps: IDependencies) {
+  return function* saga() {
+    yield takeLatest(loadCategoriesType, executeCategoriesLoading, deps);
+  };
+}
+
+export function* executeCategoriesLoading({ api }: IDependencies) {
+  try {
+    const response: ICategoriesResponse = yield call(api.loadCategories);
+    yield put(actions.loadCategoriesCompleted(response));
+  } catch (error) {
+    const message = getErrorMsg(error);
+    yield put(actions.loadCategoriesFailed(message));
+  }
 }
 
 export default getSaga;

@@ -37,4 +37,9 @@ export interface ILoadCategoriesCompleted {
   payload: ICategoriesResponse;
 }
 
-export type Action = ICategorySelected | ILoadCategories | ILoadCategoriesCompleted;
+export interface ILoadCategoriesFailed {
+  type: 'CATEGORY_SELECT:LOAD_CATEGORIES_FAILED';
+  payload: string;
+}
+
+export type Action = ICategorySelected | ILoadCategories | ILoadCategoriesCompleted | ILoadCategoriesFailed;

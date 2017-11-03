@@ -8,13 +8,13 @@ function mainReducer(state: IData = initialDataState, action: Action): IData {
   const imState: Map<string, any> = fromJS(state);
 
   switch (action.type) {
-  case 'CATEGORY_SELECT:LOAD_CATEGORIES_COMPLETED':
-    // return { ...state, options: action.payload };
-    return imState.set('options', action.payload).toJS();
-  case ('CATEGORY_SELECT:CATEGORY_SELECTED'):
-    return imState.set('selected', action.payload).toJS();
-  default:
-    return state;
+    case 'CATEGORY_SELECT:LOAD_CATEGORIES_COMPLETED':
+      // return { ...state, options: action.payload };
+      return imState.set('options', action.payload).toJS();
+    case ('CATEGORY_SELECT:CATEGORY_SELECTED'):
+      return imState.set('selected', action.payload).toJS();
+    default:
+      return state;
   }
 }
 
@@ -26,13 +26,13 @@ function getCommunicationReducer(actionType: string) {
     const imState: Map<string, any> = fromJS(state);
 
     switch (type) {
-    case `CATEGORY_SELECT:${actionType}`:
-      return imState.set('isRequesting', true).set('error', '').toJS();
-    case `CATEGORY_SELECT:${actionType}_COMPLETED`:
-      return imState.set('isRequesting', false).toJS();
-    case `CATEGORY_SELECT:${actionType}_FAILED`:
-      return imState.set('isRequesting', false).set('error', payload).toJS();
-    default: return state;
+      case `CATEGORY_SELECT:${actionType}`:
+        return imState.set('isRequesting', true).set('error', '').toJS();
+      case `CATEGORY_SELECT:${actionType}_COMPLETED`:
+        return imState.set('isRequesting', false).toJS();
+      case `CATEGORY_SELECT:${actionType}_FAILED`:
+        return imState.set('isRequesting', false).set('error', payload).toJS();
+      default: return state;
     }
   };
 }
