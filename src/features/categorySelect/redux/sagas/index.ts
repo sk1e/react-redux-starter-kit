@@ -18,10 +18,10 @@ export function getSaga(deps: IDependencies) {
 export function* executeCategoriesLoading({ api }: IDependencies) {
   try {
     const response: ICategoriesResponse = yield call(api.loadCategories);
-    yield put(actions.loadCategoriesCompleted(response));
+    yield put(actions.loadCategoriesSuccess(response));
   } catch (error) {
     const message = getErrorMsg(error);
-    yield put(actions.loadCategoriesFailed(message));
+    yield put(actions.loadCategoriesFail(message));
   }
 }
 

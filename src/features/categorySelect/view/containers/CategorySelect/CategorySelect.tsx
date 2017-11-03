@@ -28,7 +28,7 @@ interface IActionProps {
   chooseCategory: typeof actions.chooseCategory;
 }
 
-type IProps = IOwnProps & IActionProps & IStateProps;
+type Props = IOwnProps & IActionProps & IStateProps;
 
 function mapState(state: IAppReduxState): IStateProps {
   const categories = selectors.selectCategories(state);
@@ -50,14 +50,15 @@ function mapDispatch(dispatch: Dispatch<any>): IActionProps {
   }, dispatch);
 }
 
-class CategorySelect extends React.PureComponent<IProps, {}> {
+const b = block('categories-select');
+
+class CategorySelect extends React.PureComponent<Props, {}> {
   public componentDidMount() {
     this.props.loadCategories();
   }
 
   public render() {
     const { value, options } = this.props;
-    const b = block('categories-select');
 
     return (
       <FormGroup>
@@ -86,5 +87,5 @@ class CategorySelect extends React.PureComponent<IProps, {}> {
   }
 }
 
-export { IProps, CategorySelect };
+export { Props, CategorySelect };
 export default connect<IStateProps, IActionProps, IOwnProps>(mapState, mapDispatch)(CategorySelect);

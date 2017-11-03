@@ -1,9 +1,5 @@
-import { IReduxState, ICommunication, IData } from '../namespace';
-
-const initialCommunicationState: ICommunication = {
-  isRequesting: false,
-  error: '',
-};
+import { IReduxState, IData } from '../namespace';
+import { initialCommunicationField } from 'shared/helpers/redux';
 
 const initialDataState: IData = {
   options: [],
@@ -13,10 +9,10 @@ const initialDataState: IData = {
 /* Construct main feature state from defined parts */
 const initialState: IReduxState = {
   communications: {
-    categoriesFetching: { ...initialCommunicationState },
+    categoriesFetching: { ...initialCommunicationField },
   },
   data: { ...initialDataState },
 };
 
-export { initialCommunicationState, initialDataState };
+export { initialDataState };
 export default initialState;

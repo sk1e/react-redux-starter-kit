@@ -1,26 +1,22 @@
 import { ICategoriesResponse } from 'services/api/Api';
+import { ICommunicationState } from 'shared/helpers/redux';
 
 export interface IReduxState {
-  communications: {
-    categoriesFetching: ICommunication;
-  };
   data: IData;
+  communications: {
+    categoriesFetching: ICommunicationState;
+  };
+}
+
+export interface IData {
+  options: ICategory[];
+  selected: number | null;
 }
 
 export interface ICategory {
   uid: number;
   name: string;
   id: number;
-}
-
-export interface ICommunication {
-  isRequesting: boolean;
-  error: string;
-}
-
-export interface IData {
-  options: ICategory[];
-  selected: number | null;
 }
 
 export interface ICategorySelected {
@@ -32,14 +28,14 @@ export interface ILoadCategories {
   type: 'CATEGORY_SELECT:LOAD_CATEGORIES';
 }
 
-export interface ILoadCategoriesCompleted {
-  type: 'CATEGORY_SELECT:LOAD_CATEGORIES_COMPLETED';
+export interface ILoadCategoriesSuccess {
+  type: 'CATEGORY_SELECT:LOAD_CATEGORIES_SUCCESS';
   payload: ICategoriesResponse;
 }
 
-export interface ILoadCategoriesFailed {
-  type: 'CATEGORY_SELECT:LOAD_CATEGORIES_FAILED';
-  payload: string;
+export interface ILoadCategoriesFail {
+  type: 'CATEGORY_SELECT:LOAD_CATEGORIES_FAIL';
+  error: string;
 }
 
-export type Action = ICategorySelected | ILoadCategories | ILoadCategoriesCompleted | ILoadCategoriesFailed;
+export type Action = ICategorySelected | ILoadCategories | ILoadCategoriesSuccess | ILoadCategoriesFail;

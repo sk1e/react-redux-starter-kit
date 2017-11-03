@@ -1,5 +1,6 @@
-import { IReduxState, ICategory, ICommunication } from '../namespace';
+import { IReduxState, ICategory } from '../namespace';
 import { IAppReduxState } from 'shared/types/app';
+import { ICommunicationState } from 'shared/helpers/redux';
 
 function selectFeatureState(state: IAppReduxState): IReduxState {
   if (!state.categorySelect) {
@@ -17,6 +18,6 @@ export function selectChosenCategory(state: IAppReduxState): number | null {
   return selectFeatureState(state).data.selected;
 }
 
-export function selectCategoriesFetching(state: IAppReduxState): ICommunication {
+export function selectCategoriesFetching(state: IAppReduxState): ICommunicationState {
   return selectFeatureState(state).communications.categoriesFetching;
 }
