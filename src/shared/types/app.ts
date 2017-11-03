@@ -99,6 +99,6 @@ export type RootSaga = (deps: IDependencies) => () => SagaIterator;
 
 export type BundleLoader<T> = (callback: (bundle: T) => void) => void;
 
-export type Lang = 'en' | 'he';
-
 export type ReactComponent<P> = React.ComponentClass<P> | React.StatelessComponent<P>;
+
+export type Uid = number;

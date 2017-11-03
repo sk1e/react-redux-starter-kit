@@ -1,27 +1,28 @@
 import { ICategoriesResponse } from 'services/api/Api';
-import { ICommunicationState } from 'shared/helpers/redux';
+import { ICommunicationState, IReduxField } from 'shared/helpers/redux';
+import { Uid } from 'shared/types/app';
 
 export interface IReduxState {
-  data: IData;
+  data: {
+    categories: ICategory[];
+  };
+  edit: {
+    selectedCategoryUid: IReduxField<number | null>;
+  };
   communications: {
     categoriesFetching: ICommunicationState;
   };
 }
 
-export interface IData {
-  options: ICategory[];
-  selected: number | null;
-}
-
 export interface ICategory {
-  uid: number;
+  uid: Uid;
   name: string;
   id: number;
 }
 
 export interface ICategorySelected {
   type: 'CATEGORY_SELECT:CATEGORY_SELECTED';
-  payload: number;
+  payload: IReduxField<Uid>;
 }
 
 export interface ILoadCategories {

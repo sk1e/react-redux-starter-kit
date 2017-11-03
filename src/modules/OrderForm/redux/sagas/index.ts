@@ -31,7 +31,7 @@ export function* saveFieldsSaga({ api }: IDependencies, { payload }: ISaveFields
 
   const data: IOrderFormRequest = {
     attributes: dynamicValues,
-    category: state.categorySelect.data.selected as number,
+    category: state.categorySelect.edit.selectedCategoryUid.value || 0,
     location: location.area,
     // TODO: fill other properties below
     coord_from_lng: fromLocation.lng,

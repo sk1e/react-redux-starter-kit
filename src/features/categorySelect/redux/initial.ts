@@ -1,18 +1,17 @@
-import { IReduxState, IData } from '../namespace';
+import { IReduxState } from '../namespace';
 import { initialCommunicationField } from 'shared/helpers/redux';
-
-const initialDataState: IData = {
-  options: [],
-  selected: null,
-};
 
 /* Construct main feature state from defined parts */
 const initialState: IReduxState = {
+  data: {
+    categories: [],
+  },
+  edit: {
+    selectedCategoryUid: { value: null, error: '' },
+  },
   communications: {
     categoriesFetching: { ...initialCommunicationField },
   },
-  data: { ...initialDataState },
 };
 
-export { initialDataState };
 export default initialState;

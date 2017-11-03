@@ -39,7 +39,7 @@ function mapState(state: IAppReduxState): IStateProps {
       label: category.name,
       value: category.uid,
     })),
-    value: chosen,
+    value: chosen.value,
   };
 }
 
