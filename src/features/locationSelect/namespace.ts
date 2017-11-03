@@ -1,4 +1,7 @@
-import { IAreaEntities, ICityEntities, SelectedLocation, ICommunication } from 'shared/types/models';
+import {
+  IAreaEntities, ICityEntities, SelectedLocation, ICommunication,
+  INormalizedCitiesResponse,
+} from 'shared/types/models';
 
 interface IReduxState {
   communications: {
@@ -15,6 +18,20 @@ interface IReduxState {
   ui: {
     showSelectedLocation: boolean;
   };
+}
+
+export interface ILoadCities {
+  type: 'LOCATION_SELECT:LOAD_CITIES';
+}
+
+export interface ILoadCitiesSuccess {
+  type: 'LOCATION_SELECT:LOAD_CITIES_SUCCESS';
+  payload: INormalizedCitiesResponse;
+}
+
+export interface ILoadCitiesFail {
+  type: 'LOCATION_SELECT:LOAD_CITIES_FAIL';
+  error: string;
 }
 
 export {

@@ -5,7 +5,7 @@ import * as sel from './redux/data/selectors';
 import act from './redux/actions';
 import LocationSelect from './view/containers/LocationSelect/LocationSelect';
 import { default as reducer } from './redux/reducers';
-import getSaga from './redux/actions/sagas';
+import getSaga from './redux/sagas';
 
 const actions = { ...act };
 const selectors = { ...sel };
